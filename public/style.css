@@ -13,11 +13,11 @@ h1, h2, h3, h4{
 
 h1{
   font-size:2.5em;
-  border-bottom:1px solid #ccc;
+  border-bottom:1px solid #bbb;
 }
 
 h2, h3, h4{
-  border-bottom:1px solid #efefef;
+  border-bottom:1px solid #eee;
   margin-top:2em;
 }
 
@@ -78,7 +78,7 @@ Definition lists
 dl{
   width:600px;
   margin-bottom:2em;
-  border-bottom:1px solid #efefef;
+  border-bottom:1px dashed #efefef;
   overflow:hidden;
 }
 
@@ -98,7 +98,7 @@ dl dd{
 
 dl dt,
 dl dd{
-  border-top:1px solid #efefef;
+  border-top:1px dashed #efefef;
   padding:.3em 0;
 }
 
@@ -143,9 +143,9 @@ code.inline_code, pre{
 .s{ color:#8AB85D; }
 
 /* regular expressions and regexp specials */
-.rx{  }
+.rx{ color:#d0905a; }
 
-.ch{  }
+.ch{ }
 
 /* integers, symbols, self, constants, instance vars */
 .i, .sy, .pc, .cl, .co, .iv{ color:#1E429F;  }
