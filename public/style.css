@@ -34,7 +34,7 @@ a#header{
   display:block;
   width:100%;
   height:100px;
-  background:url(/stuff.jpg);
+  background:url(/images/stuff.jpg);
 }
 
 #footer{
