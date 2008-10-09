@@ -25,6 +25,11 @@ get '/' do
   erb(:index)
 end
 
+get '/tidbits/rss' do
+  headers['Content-Type'] =  'text/xml;charset=utf-8'
+  erb :rss, :layout => false
+end
+
 get '/:thingie' do
   @thingie = ALL_THINGIES.find {|t| t.permalink == params[:thingie] }
   @thingie ? erb(:show) : "This is a very ugly 404 page."
