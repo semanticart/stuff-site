@@ -18,6 +18,7 @@ h1{
 
 h2, h3, h4{
   border-bottom:1px solid #efefef;
+  margin-top:2em;
 }
 
 a{
@@ -72,10 +73,9 @@ Definition lists
 
 
 dl{
-  padding: 0;
   width:600px;
-  margin-bottom:1em;
-  border-bottom:1px solid #ccc;
+  margin-bottom:2em;
+  border-bottom:1px solid #efefef;
   overflow:hidden;
 }
 
@@ -95,6 +95,6 @@ dl dd{
 
 dl dt,
 dl dd{
-  border-top:1px solid #ccc;
-  padding:1em 0;
+  border-top:1px solid #efefef;
+  padding:.3em 0;
 }
