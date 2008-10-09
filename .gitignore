@@ -1,3 +1,4 @@
 thingies/*.textile
 .DS_Store
 public/images/**/*
+tmp
