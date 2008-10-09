@@ -1,3 +1,5 @@
 <h1><%= @thingie.title %></h1>
 
+<p class="grey">Delivered <%= @thingie.created_at.strftime("%A %d, %B %Y") %></p>
+
 <%= @thingie.textilized %>

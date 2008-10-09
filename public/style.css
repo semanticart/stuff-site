@@ -29,6 +29,7 @@ a{
 a:hover{
   background:#cc0000;
   color:#fff;
+  text-decoration:none;
 }
 
 p, ul{
@@ -39,8 +40,6 @@ p, ul{
 /*####################
 Divs and stuff
 ####################*/
-
-
 
 #wrapper{
   width:600px;
@@ -53,6 +52,12 @@ a#header{
   height:100px;
   background:url(/images/stuff.jpg);
   margin-bottom:5em;
+}
+
+p.grey{
+  color:#999;
+  font-size:.8em;
+  text-align:right;
 }
 
 #footer{
@@ -69,8 +74,6 @@ a#header{
 /*####################
 Definition lists
 ####################*/
-
-
 
 dl{
   width:600px;
@@ -98,3 +101,56 @@ dl dd{
   border-top:1px solid #efefef;
   padding:.3em 0;
 }
+
+/*####################
+syntax highlighting and other neat blocks
+####################*/
+
+pre,
+code{
+	font-family: "Bitstream Vera Sans Mono", "Monaco", "Courier", monospace;
+}
+
+pre{
+  padding:.5em;
+  margin-left:1.5em;
+  overflow:hidden;
+}
+
+pre:hover{
+  overflow:visible;
+  background:#f7f7f7;
+}
+
+code.inline_code, pre{
+  font-size:.85em;
+}
+
+/* entities */
+.fu{ }
+
+/* keywords, tags */
+.r, .ta{ color:#3F6F54; font-weight:bold; }
+
+
+/* comments */
+.c{ 
+	color:#aaa;
+	font-style:italic;
+}
+
+/* strings */
+.s{ color:#8AB85D; }
+
+/* regular expressions and regexp specials */
+.rx{  }
+
+.ch{  }
+
+/* integers, symbols, self, constants, instance vars */
+.i, .sy, .pc, .cl, .co, .iv{ color:#1E429F;  }
+.cl, .co{ font-weight:bold;}
+
+/* string interpolation */
+
+.il, .il *{ }

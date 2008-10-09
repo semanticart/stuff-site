@@ -30,15 +30,34 @@ class String
 end
 
 class Thingie
-  attr_reader :title, :permalink, :textilized
+  attr_reader :title, :permalink, :textilized, :created_at, :topic
+  METADATA_REGEXP = /^%%([a-z]+) (.+)\s/
 
   def initialize(path)
     filename = File.basename(path)
+    
     @permalink = filename[0..-9]
     @text = File.read(path)
+    extract_metadata_from_text
+    
+    @created_at = get_created_at
+    @topic = (@metadata['topic'] || 'stuff').capitalize
+    
     @textilized = RedCloth.new(@text).to_html(:textile, :refs_syntax_highlighter)
     @title = @permalink.split('_').map {|c| c.capitalize }.join(' ')
   end
+  
+  private
+  
+  def extract_metadata_from_text
+    @metadata = {}
+    @text.gsub!(METADATA_REGEXP) do |m|
+      @metadata[$~[1]] = $~[2]
+      nil
+    end
+  end
+  
+  def get_created_at
+    Time.utc(*@metadata['created'].split(' '))
+  end
 end
-
-THINGIES = Dir.glob(File.join(File.dirname(__FILE__), 'thingies', '*.textile')).map {|l| Thingie.new(l) }
