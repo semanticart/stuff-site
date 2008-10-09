@@ -153,4 +153,4 @@ code.inline_code, pre{
 
 /* string interpolation */
 
-.il, .il *{ }
+.il, .il *{ color:#5F985D; }
