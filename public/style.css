@@ -1,3 +1,7 @@
+/*####################
+Tags and stuff
+####################*/
+
 body{
   font-family: Verdana, Arial, sans-serif;
   font-size:14px;
@@ -31,6 +35,12 @@ p, ul{
   line-height:1.5em;
 }
 
+/*####################
+Divs and stuff
+####################*/
+
+
+
 #wrapper{
   width:600px;
   margin:0 auto;
@@ -53,4 +63,38 @@ a#header{
 
 #footer a{
   color:#555;
+}
+
+/*####################
+Definition lists
+####################*/
+
+
+
+dl{
+  padding: 0;
+  width:600px;
+  margin-bottom:1em;
+  border-bottom:1px solid #ccc;
+  overflow:hidden;
+}
+
+dl dt{
+  width: 200px;
+  float:left;
+  margin: 0;
+  font-weight: bold;
+  clear:left;
+}
+
+dl dd{
+  float:left;
+  width: 400px;
+  margin: 0;
+}
+
+dl dt,
+dl dd{
+  border-top:1px solid #ccc;
+  padding:1em 0;
 }
