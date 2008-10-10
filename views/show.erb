@@ -2,7 +2,7 @@
 
 <p class="grey">
     Filed in <a href="/topic/<%= @thingie.topic %>"><%= @thingie.topic.capitalize %></a>.
-    Delivered <%= @thingie.created_at.strftime("%A %d, %B %Y") %>
+    Delivered <%= @thingie.created_at.strftime("%A %B %d %Y") %>
 </p>
 
 <%= @thingie.textilized %>
