@@ -21,6 +21,20 @@ configure do
   GROUPED_THINGIES = thingies_grouped_by_topic
 end
 
+helpers do
+  def page_title
+    title = []
+    title << 'stuff'
+    
+    if @thingie
+      title << @thingie.topic
+      title << @thingie.title
+    end
+    
+    title.join(' - ')
+  end
+end
+
 get '/' do
   erb(:index)
 end
