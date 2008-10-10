@@ -44,6 +44,11 @@ get '/tidbits/rss' do
   erb :rss, :layout => false
 end
 
+get '/topic/:name' do
+  @thingies = ALL_THINGIES.find_all {|t| t.topic == params[:name] }
+  @thingies.empty? ? "This is a very ugly 404 page." : erb(:topic)
+end
+
 get '/:thingie' do
   @thingie = ALL_THINGIES.find {|t| t.permalink == params[:thingie] }
   @thingie ? erb(:show) : "This is a very ugly 404 page."

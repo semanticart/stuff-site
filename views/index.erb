@@ -1,7 +1,7 @@
 <p>Random stuff, by <a href="http://august.lilleaas.net">August</a>. The list:</p>
 
 <% GROUPED_THINGIES.each do |group, thingies| %>
-    <h2><%= group %></h2>
+    <h2><%= group.capitalize %></h2>
     
     <ul>
         <% thingies.each do |thingie| %>

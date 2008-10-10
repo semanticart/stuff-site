@@ -41,7 +41,7 @@ class Thingie
     extract_metadata_from_text
     
     @created_at = get_created_at
-    @topic = (@metadata['topic'] || 'stuff').capitalize
+    @topic = (@metadata['topic'] || 'stuff')
     
     @textilized = RedCloth.new(@text).to_html(:textile, :refs_syntax_highlighter)
     @title = @permalink.split('_').map {|c| c.capitalize }.join(' ')

@@ -1,0 +1,9 @@
+<h1><%= params[:name].capitalize %></h1>
+
+<p>Stuff in this topic:</p>
+
+<ul>
+    <% @thingies.each do |thingie| %>
+        <li><a href="/<%= thingie.permalink %>"><%= thingie.title %></li>
+    <% end %>
+</ul>
