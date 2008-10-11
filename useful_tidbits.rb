@@ -1,3 +1,15 @@
+class String
+  def has_newlines?
+    self =~ /\n/
+  end
+end
+
+class Hash
+  def to_html_tag_attributes
+    map {|k, v| "#{k}=\"#{v}\""}.join(" ")
+  end
+end
+
 module RedClothExtensions
   HIGHLIGHT_SINGLE_LINE = '<code class="inline_code">%s</code>'
   HIGHLIGHT_MULTI_LINE = '<pre><code class="multiline_code">%s</code></pre>'
@@ -14,24 +26,17 @@ module RedClothExtensions
       highlighted = wrap_in % CodeRay.scan(code, lang).div(:wrap => nil, :css => :class)
       HIGHLIGHT_WRAPPER % highlighted
     end
-  end
-  
-  METADATA_REGEXP = /%%([a-z]+) (.+)\s/
+  end  
 end
 
 RedCloth.class_eval do 
   include RedClothExtensions
 end
 
-class String
-  def has_newlines?
-    self =~ /\n/
-  end
-end
-
 class Thingie
   attr_reader :title, :permalink, :textilized, :created_at, :topic
   METADATA_REGEXP = /^%%([a-z]+) (.+)\s/
+  IMAGE_REGEXP = /^img\. ([\w.]+)(?: (.+))?/
 
   def initialize(path)
     filename = File.basename(path)
@@ -39,6 +44,7 @@ class Thingie
     @permalink = filename[0..-9]
     @text = File.read(path)
     extract_metadata_from_text
+    parse_images
     
     @created_at = get_created_at
     @topic = (@metadata['topic'] || 'stuff')
@@ -54,6 +60,22 @@ class Thingie
     @text.gsub!(METADATA_REGEXP) do |m|
       @metadata[$~[1]] = $~[2]
       nil
+    end
+  end
+  
+  def parse_images
+    @text.gsub!(IMAGE_REGEXP) do |m|
+      filename = $~[1]
+      alt_text = $~[2]
+      
+      options = {}
+      options[:src] = "http://#{CONFIG['url']}/images/#{permalink}/#{filename}"
+      if alt_text
+        options[:alt] = alt_text
+        options[:title] = alt_text
+      end
+      
+      "<img #{options.to_html_tag_attributes} />"
     end
   end
   

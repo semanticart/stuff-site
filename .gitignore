@@ -3,3 +3,4 @@ thingies/*.textile
 public/images/**/*
 tmp
 image_sources
+config.yml

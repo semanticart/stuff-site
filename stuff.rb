@@ -2,10 +2,13 @@ require 'rubygems'
 require 'sinatra'
 require 'redcloth'
 require 'coderay'
+require 'yaml'
 
 layout "layout.erb"
 
 configure do
+  CONFIG = YAML.load_file(File.join(File.dirname(__FILE__), 'config.yml'))
+  
   require 'useful_tidbits'
   
   thingie_paths = Dir.glob(File.join(File.dirname(__FILE__), 'thingies', '*.textile'))
