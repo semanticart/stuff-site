@@ -9,16 +9,7 @@ configure do
   require 'useful_tidbits'
   
   thingie_paths = Dir.glob(File.join(File.dirname(__FILE__), 'thingies', '*.textile'))
-  thingies = thingie_paths.map {|path| Thingie.new(path) }.sort_by {|l| l.created_at }
-
-  thingies_grouped_by_topic = thingies.inject({}) do |hash, thingie|
-    hash[thingie.topic] ||= []
-    hash[thingie.topic] << thingie
-    hash
-  end
-
-  ALL_THINGIES = thingies
-  GROUPED_THINGIES = thingies_grouped_by_topic
+  ALL_THINGIES = thingie_paths.map {|path| Thingie.new(path) }.sort_by {|l| l.created_at }.reverse
 end
 
 helpers do

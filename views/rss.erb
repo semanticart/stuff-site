@@ -7,7 +7,7 @@
         <language>en-us</language>
         <generator>Sinatra and ERB</generator>
     
-        <% ALL_THINGIES.reverse[0..9].each do |thingie| %>
+        <% ALL_THINGIES[0..9].each do |thingie| %>
         <item>
             <title><%= thingie.title %></title>
             <link>http://l2.lilleaas.net/<%= thingie.permalink %></link>
