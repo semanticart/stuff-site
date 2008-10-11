@@ -1,0 +1,29 @@
+%%created 2008 10 9
+%%topic rails
+
+This is exactly how rails does that:
+
+img. template_file_name_schema.png [action name].[mime type].[template type]
+
+- [action name] := The name of the current action. *show* for /posts/1, *index* for /posts etc.
+- [mime type] := *html* by default. *js* for /posts.js, *xml* for /posts/1.xml etc. Optional. Leave this out, and rails uses the template for all mime types of that action.
+- [template type] := Which template engine Rails should use. Chose from *erb*, *builder*, *rjs* and so on.
+
+Some examples of resource paths and the respective template names:
+
+- /posts := index.html.erb
+- /posts.xml := index.xml.builder
+- /posts/1.js := show.js.rjs
+
+h2. Template type does not have to match mime type
+
+Template types and mime types does not have to match, though, as they do in the example above. *index.html.builder*, *show.xml.rjs* and *update.js.erb* are all valid template names. It means that you can use erb to create XML and builder to create HTML. Your choice.
+
+- /posts.xml := index.xml.erb
+
+h2. Optional mime type
+
+The mime type is also optional. The template *index.erb* will be rendered for all mime types.
+
+- /posts := index.erb
+- /posts.js := index.erb

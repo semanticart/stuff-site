@@ -5,6 +5,7 @@ class String
 end
 
 class Hash
+  # Turns {:src => "foo.jpg", :alt => "Oh hai"} into 'src="foo.jpg" alt="Oh hai"'.
   def to_html_tag_attributes
     map {|k, v| "#{k}=\"#{v}\""}.join(" ")
   end
@@ -16,6 +17,9 @@ module RedClothExtensions
   HIGHLIGHT_WRAPPER = '<notextile>%s</notextile>'
   SOURCE_TAG_REGEXP = /((:?\t\n)?<source(?:\:([a-z]+))?>(.+?)<\/source>(?:\t\n)?)/m
   
+  # Scans for <source></source> tags and syntax highligts them. The output is either
+  # one of HIGHLIGHT_SINGLE_LINE og HIGHLIGHT_MULTI_LINE, with the CodeRay syntax
+  # highlighted output where the %s is.
   def refs_syntax_highlighter(text)
     text.gsub!(SOURCE_TAG_REGEXP) do |m|
       all_of_it = $~[1]
@@ -33,6 +37,7 @@ RedCloth.class_eval do
   include RedClothExtensions
 end
 
+# The actual, uhm, articles.
 class Thingie
   attr_reader :title, :permalink, :textilized, :created_at, :topic
   METADATA_REGEXP = /^%%([a-z]+) (.+)\s/
@@ -55,6 +60,7 @@ class Thingie
   
   private
   
+  # Extracts metadata, such as '%%topic foo', out of the texts.
   def extract_metadata_from_text
     @metadata = {}
     @text.gsub!(METADATA_REGEXP) do |m|
@@ -63,6 +69,8 @@ class Thingie
     end
   end
   
+  # Instead of using RedCloths !image-url.here! syntax, this looks for
+  # 'img. foo.jpg' and handles a dynamic absolute URL automagically.
   def parse_images
     @text.gsub!(IMAGE_REGEXP) do |m|
       filename = $~[1]
