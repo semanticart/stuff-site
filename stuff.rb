@@ -43,7 +43,7 @@ get '/topic/:name' do
   @thingies.empty? ? "This is a very ugly 404 page." : erb(:topic)
 end
 
-get '/:thingie' do
-  @thingie = ALL_THINGIES.find {|t| t.permalink == params[:thingie] }
+get '/*' do
+  @thingie = ALL_THINGIES.find {|t| t.permalink == params[:splat].first }
   @thingie ? erb(:show) : "This is a very ugly 404 page."
 end
