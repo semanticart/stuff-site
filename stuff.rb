@@ -18,7 +18,7 @@ end
 helpers do
   def page_title
     title = []
-    title << 'stuff'
+    title << CONFIG['title']
     
     if @thingie
       title << @thingie.topic

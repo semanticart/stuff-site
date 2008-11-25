@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <rss version="2.0">
     <channel>
-        <title>stuff</title>
-        <link>http://stuff.lilleaas.net/</link>
-        <description>stuff (by leethal)</description>
+        <title><%= CONFIG['title'] %></title>
+        <link><%= CONFIG['public_url'] %></link>
+        <description><%= CONFIG['description'] %></description>
         <language>en-us</language>
         <generator>Sinatra and ERB</generator>
     
         <% ALL_THINGIES[0..9].each do |thingie| %>
         <item>
             <title><%= thingie.title %></title>
-            <link>http://l2.lilleaas.net/<%= thingie.permalink %></link>
+            <link><%= CONFIG['rss_url_prefix'] %><%= thingie.permalink %></link>
             <description><%= thingie.textilized %></description>
             <pubDate><%= thingie.created_at %></pubDate>
         </item>

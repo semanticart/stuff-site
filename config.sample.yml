@@ -1,1 +1,11 @@
+atom_feed: http://feeds.feedburner.com/leethalstuff
+disqus_url: example_user.disqus.com
+disqus_user: example_user
+intro: <p>Random stuff, by <a href="http://august.lilleaas.net">August</a>. Consider all the stuff on this page as work in progress kind of stuff.</p>
+public_url: http://stuff.lilleaas.net/
+remote_images: lilleaas.net:sites/stuff/public/images/
+remote_thingies: lilleaas.net:sites/stuff/thingies/
+rss_feed: http://feeds.feedburner.com/leethalstuff
+rss_url_prefix: http://l2.lilleaas.net/
+title: stuff
 url: localhost:4567
