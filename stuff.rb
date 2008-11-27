@@ -8,11 +8,7 @@ layout "layout.erb"
 
 configure do
   CONFIG = YAML.load_file(File.join(File.dirname(__FILE__), 'config.yml'))
-  
   require 'useful_tidbits'
-  
-  thingie_paths = Dir.glob(File.join(File.dirname(__FILE__), 'thingies', '*.textile'))
-  ALL_THINGIES = thingie_paths.map {|path| Thingie.new(path) }.sort_by {|l| l.created_at }.reverse
 end
 
 helpers do

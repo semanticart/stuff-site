@@ -91,3 +91,6 @@ class Thingie
     Time.utc(*@metadata['created'].split(' '))
   end
 end
+
+thingie_paths = Dir.glob(File.join(File.dirname(__FILE__), 'thingies', '*.textile'))
+ALL_THINGIES = thingie_paths.map {|path| Thingie.new(path) }.sort_by {|l| l.created_at }.reverse
