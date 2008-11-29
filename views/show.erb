@@ -8,5 +8,5 @@
 <%= @thingie.textilized %>
 
 <% unless CONFIG['disqus_user'].nil? or CONFIG['disqus_user'].empty? %>
-<div id="disqus_thread"></div><script type="text/javascript" src="http://disqus.com/forums/<%= CONFIG['disqus_user'] %>/embed.js"></script><noscript><a href="http://<%= CONFIG['disqus_url'] %>/?url=ref">View the discussion thread.</a></noscript>
+<div id="disqus_thread"></div><script type="text/javascript" src="http://disqus.com/forums/<%= CONFIG['disqus_user'] %>/embed.js"></script><noscript><p><a href="http://<%= CONFIG['disqus_url'] %>/?url=ref">View the discussion thread.</a></p></noscript>
 <% end %>
