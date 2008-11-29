@@ -21,7 +21,7 @@ task :make_static do
 
   require 'stuff'
 
-  @request = Rack::MockRequest.new(Sinatra.build_application)
+  @request = Rack::MockRequest.new(Sinatra.application)
   
   # the index
   File.open(File.join(static_dir, 'index.html'), 'w'){|f| f.print @request.request('get', '/').body}
@@ -37,8 +37,9 @@ task :make_static do
   end
   
   # the topics
+  Dir.mkdir(File.join(static_dir, 'topic')) unless File.directory?(File.join(static_dir, 'topic'))
   ALL_THINGIES.map{|thing| thing.topic}.uniq.each do |topic|
-    Dir.mkdir(File.join(static_dir, topic)) unless File.directory?(File.join(static_dir, topic))
-    File.open(File.join(static_dir, topic, 'index.html'), 'w'){|f| f.print @request.request('get', "/topic/#{topic}").body}
+    Dir.mkdir(File.join(static_dir, 'topic', topic)) unless File.directory?(File.join(static_dir, 'topic', topic))
+    File.open(File.join(static_dir, 'topic', topic, 'index.html'), 'w'){|f| f.print @request.request('get', "/topic/#{topic}").body}
   end
 end
