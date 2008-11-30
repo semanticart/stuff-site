@@ -55,7 +55,7 @@ class Thingie
     @topic = (@metadata['topic'] || 'stuff')
     
     @textilized = RedCloth.new(@text).to_html(:textile, :refs_syntax_highlighter)
-    @title = @permalink.split('_').map {|c| c.capitalize }.join(' ')
+    @title = @metadata['title'] || @permalink.split('_').map {|c| c.capitalize }.join(' ')
   end
   
   private
