@@ -9,8 +9,12 @@ end
 
 desc "Creates a static copy of your site by iterating your thingies."
 task :make_static do
+  def dump_request_to_file url, file
+    Dir.mkdir(File.dirname(file)) unless File.directory?(File.dirname(file))
+    File.open(file, 'w'){|f| f.print @request.request('get', url).body}
+  end
+
   static_dir = File.join(File.dirname(__FILE__), 'static')
-  Dir.mkdir(static_dir) unless File.directory?(static_dir)
 
   require 'sinatra'
   Sinatra::Application.default_options.merge!(
@@ -24,22 +28,19 @@ task :make_static do
   @request = Rack::MockRequest.new(Sinatra.application)
   
   # the index
-  File.open(File.join(static_dir, 'index.html'), 'w'){|f| f.print @request.request('get', '/').body}
+  dump_request_to_file('/', File.join(static_dir, 'index.html'))
 
   # the rss
-  Dir.mkdir(File.join(static_dir, 'tidbits')) unless File.directory?(File.join(static_dir, 'tidbits'))
-  File.open(File.join(static_dir, 'tidbits', 'rss'), 'w'){|f| f.print @request.request('get', '/tidbits/rss').body}
+  dump_request_to_file('/tidbits/rss', File.join(static_dir, 'tidbits', 'rss'))
   
   # the thingies
   ALL_THINGIES.each do |thingie|
-    Dir.mkdir(File.join(static_dir, thingie.permalink)) unless File.directory?(File.join(static_dir, thingie.permalink))
-    File.open(File.join(static_dir, thingie.permalink, 'index.html'), 'w'){|f| f.print @request.request('get', "/#{thingie.permalink}").body}    
+    dump_request_to_file("/#{thingie.permalink}", File.join(static_dir, thingie.permalink, 'index.html'))
   end
   
   # the topics
   Dir.mkdir(File.join(static_dir, 'topic')) unless File.directory?(File.join(static_dir, 'topic'))
   ALL_THINGIES.map{|thing| thing.topic}.uniq.each do |topic|
-    Dir.mkdir(File.join(static_dir, 'topic', topic)) unless File.directory?(File.join(static_dir, 'topic', topic))
-    File.open(File.join(static_dir, 'topic', topic, 'index.html'), 'w'){|f| f.print @request.request('get', "/topic/#{topic}").body}
+    dump_request_to_file("/topic/#{topic}", File.join(static_dir, 'topic', topic, 'index.html'))
   end
 end
