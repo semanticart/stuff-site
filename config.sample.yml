@@ -1,11 +1,23 @@
+# this is what your layout will link to for discoverable atom ( can be the same as the rss )
 atom_feed: http://feeds.feedburner.com/leethalstuff
+# get an account on disqus.com to use comments
+# if you don't want comments, leave it blank
 disqus_url: example_user.disqus.com
 disqus_user: example_user
+# this is shown on the index, any html will do
 intro: <p>Random stuff, by <a href="http://august.lilleaas.net">August</a>. Consider all the stuff on this page as work in progress kind of stuff.</p>
+# your public-facing url ( for rss )
 public_url: http://stuff.lilleaas.net/
+# the path to the images folder on your server for the rsync task
 remote_images: lilleaas.net:sites/stuff/public/images/
+# the path to the thingies folder on your server for the rsync task
 remote_thingies: lilleaas.net:sites/stuff/thingies/
+# this is what your layout will link to for discoverable rss ( can be the same as the atom )
 rss_feed: http://feeds.feedburner.com/leethalstuff
+# what url to prefix the thingies links with ( this path + the thingie permalink
+# should resolve to the thingie itself )
 rss_url_prefix: http://l2.lilleaas.net/
+# title of your blog
 title: stuff
+# local url for image parsing ( see useful_tidbits#parse_images )
 url: localhost:4567

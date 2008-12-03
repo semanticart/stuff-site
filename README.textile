@@ -1,6 +1,8 @@
+Run your blog/articles/stuff via sinatra or publish a static site.  You get an rss feed, topics, and (optionally) comments via http://disqus.com
+
 Stuff you may want to know if you're gonna run this app on your own computer:
 
-* Make sure you have a config.yml. Making a copy of config.sample.yml is probably sensible.
-* You probably will also want to copy views/layout.sample.erb to views/layout.erb.
+* Make sure you have a config.yml. Making a copy of config.sample.yml is probably sensible.  You should browse through config.sample.yml to see some of your options.  Specifically, if you want comments, put in your disqus.com account details; if you don't want comments, make disqus_user blank.
+* You probably will also want to copy views/layout.sample.erb to views/layout.erb, but a layout isn't strictly necessary.
 * Install RedCloth 4.0, CodeRay and Sinatra. All gems.
 * FYI, the actual content on the website (in other words, thingies/ and public/images/) is not in this repository. It's on gitignore, and rsynced from local to remote with 'rake upload_stuff'. There's a sample page, thingies/how_rails_selects_which_view_to_render.textile.sample. Remove the '.sample' part, and you should have yourself an article.
