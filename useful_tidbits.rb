@@ -39,7 +39,7 @@ end
 
 # The actual, uhm, articles.
 class Thingie
-  attr_reader :title, :permalink, :textilized, :created_at, :topic
+  attr_reader :title, :permalink, :textilized, :created_at, :topic, :escaped_html
   METADATA_REGEXP = /^%%([a-z]+) (.+)\s/
   IMAGE_REGEXP = /^img\. ([\w.]+)(?: (.+))?/
 
@@ -55,6 +55,7 @@ class Thingie
     @topic = (@metadata['topic'] || 'stuff')
     
     @textilized = RedCloth.new(@text).to_html(:textile, :refs_syntax_highlighter)
+    @escaped_html = CGI.escapeHTML(@textilized)
     @title = @metadata['title'] || @permalink.split('_').map {|c| c.capitalize }.join(' ')
   end
   

@@ -11,8 +11,8 @@
         <item>
             <title><%= thingie.title %></title>
             <link><%= CONFIG['rss_url_prefix'] %><%= thingie.permalink %></link>
-            <description><%= thingie.textilized %></description>
-            <pubDate><%= thingie.created_at %></pubDate>
+            <description><%= thingie.escaped_html %></description>
+            <pubDate><%= thingie.created_at.rfc2822 %></pubDate>
         </item>
         <% end %>
     </channel>

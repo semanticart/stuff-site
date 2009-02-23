@@ -3,6 +3,7 @@ require 'sinatra'
 require 'redcloth'
 require 'coderay'
 require 'yaml'
+require 'cgi'
 
 configure do
   CONFIG = YAML.load_file(File.join(File.dirname(__FILE__), 'config.yml'))
