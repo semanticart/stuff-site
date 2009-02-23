@@ -11,22 +11,20 @@ desc "Creates a static copy of your site by iterating your thingies."
 task :make_static do
   def dump_request_to_file url, file
     Dir.mkdir(File.dirname(file)) unless File.directory?(File.dirname(file))
-    File.open(file, 'w'){|f| f.print @request.request('get', url).body}
+    File.open(file, 'w'){|f| f.print @request.get(url).body}
   end
 
   static_dir = File.join(File.dirname(__FILE__), 'static')
 
   require 'sinatra'
-  Sinatra::Application.default_options.merge!(
+  Sinatra::Default.set(
     :run => false,
-    :env => :production,
+    :environment => :production,
     :views => File.dirname(__FILE__) + "/views"
   )
-
   require 'stuff'
+  @request = Rack::MockRequest.new(Sinatra::Application)
 
-  @request = Rack::MockRequest.new(Sinatra.application)
-  
   # the index
   dump_request_to_file('/', File.join(static_dir, 'index.html'))
 

@@ -28,7 +28,7 @@ get '/' do
 end
 
 get '/tidbits/rss' do
-  headers['Content-Type'] =  'text/xml;charset=utf-8'
+  response['Content-Type'] =  'text/xml;charset=utf-8'
   erb :rss, :layout => false
 end
 
